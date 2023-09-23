@@ -44,4 +44,9 @@ async def on_message(message):
             await send_reaction(message)
 
 
-client.run(config["bot_token"])
+bot_token = ""
+if len(os.getenv("BOT_TOKEN")) == 72:
+    bot_token = os.getenv("BOT_TOKEN")
+else:
+    bot_token = config["bot_token"]
+client.run(bot_token)
