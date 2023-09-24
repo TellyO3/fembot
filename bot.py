@@ -1,5 +1,6 @@
 import json
 import os
+import re
 
 import discord
 import random
@@ -8,6 +9,8 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = discord.Client(intents=intents)
+
+pattern = re.compile("s+l+a+y+")
 
 
 def load_config():
@@ -43,10 +46,11 @@ async def on_message(message):
         if random_number == 1:
             await send_reaction(message)
 
+    if pattern.search(message.content.lower()):
+        await message.add_reaction("💅")
 
-bot_token = ""
-if len(os.getenv("BOT_TOKEN")) == 72:
-    bot_token = os.getenv("BOT_TOKEN")
-else:
+
+bot_token = os.getenv("BOT_TOKEN")
+if not type(bot_token) == str:
     bot_token = config["bot_token"]
 client.run(bot_token)
