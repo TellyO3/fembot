@@ -36,7 +36,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    elif message.content.startswith("<@1155264218770186370>"):
+    elif "<@1155264218770186370>" in message.content:
         await send_reaction(message)
     else:
         random_number = random.randint(0, config["reaction_chance"])
