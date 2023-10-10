@@ -25,9 +25,10 @@ def load_config():
 config = load_config()
 
 
-async def random_reaction():
+async def random_reaction(message):
     reaction_list = config["reaction_list"]
-    return string(random.choice(reaction_list))
+    gif = random.choice(reaction_list)
+    await message.channel.send(gif, reference=message)
 
 
 @client.event
@@ -41,7 +42,7 @@ async def on_message(message):
         return
 
     if "<@1155264218770186370>" in message.content:
-        await message.channel.send(random_reaction(), reference=message)
+       await random_reaction(message)
 
     elif yippie_pattern.search(message.content.lower()):
         await message.channel.send(config["yippie_gif"], reference=message)
@@ -49,7 +50,7 @@ async def on_message(message):
     else:
         random_number = random.randint(0, config["reaction_chance"])
         if random_number == 1:
-            await message.channel.send(random_reaction(), reference=message)
+            await random_reaction(message)
 
     if slay_pattern.search(message.content.lower()):
         await message.add_reaction("💅")
