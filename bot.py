@@ -27,7 +27,7 @@ config = load_config()
 
 async def random_reaction():
     reaction_list = config["reaction_list"]
-    return random.choice(reaction_list)
+    return string(random.choice(reaction_list))
 
 
 @client.event
