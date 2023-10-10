@@ -10,7 +10,8 @@ intents.message_content = True
 
 client = discord.Client(intents=intents)
 
-pattern = re.compile("s+l+a+y+")
+slay_pattern = re.compile("s+l+a+y+")
+yippie_pattern = re.compile("y+i+p+ee+")
 
 
 def load_config():
@@ -24,10 +25,9 @@ def load_config():
 config = load_config()
 
 
-async def send_reaction(message):
+async def random_reaction():
     reaction_list = config["reaction_list"]
-    reaction_link = random.choice(reaction_list)
-    await message.channel.send(reaction_link)
+    return random.choice(reaction_list)
 
 
 @client.event
@@ -39,15 +39,19 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    
+
     if "<@1155264218770186370>" in message.content:
-        await send_reaction(message)
+        await message.channel.send(random_reaction(), reference=message)
+
+    elif yippie_pattern.search(message.content.lower()):
+        await message.channel.send(config["yippie_gif"], reference=message)
+
     else:
         random_number = random.randint(0, config["reaction_chance"])
         if random_number == 1:
-            await send_reaction(message)
+            await message.channel.send(random_reaction(), reference=message)
 
-    if pattern.search(message.content.lower()):
+    if slay_pattern.search(message.content.lower()):
         await message.add_reaction("💅")
 
 

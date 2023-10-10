@@ -1,6 +1,6 @@
 {
   "bot_token": "",
-  "reaction_chance": 40,
+  "reaction_chance": 50,
   "reaction_list": [
     "https://tenor.com/view/mauzy-mice-mauzymice-mauzy-mice-boy-gif-5951345171965216491",
     "https://media.discordapp.net/attachments/741945274901200897/1051935101233135767/attachment.gif",
@@ -32,5 +32,6 @@
     "https://tenor.com/view/guzma-pokemon-youre-adopted-pokemon-meme-team-skull-gif-22184574",
     "https://tenor.com/view/luke-tears-of-themis-caught-in4k-gif-22535459",
     "https://tenor.com/view/adaman-pokemon-legends-arceus-meme-gif-24862549"
-  ]
+  ],
+  "yippie_gif": "https://tenor.com/view/tbh-creature-gif-25819352"
 }
